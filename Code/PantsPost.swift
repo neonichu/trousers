@@ -19,16 +19,19 @@ class PantsPost {
     var url : NSURL?
 
     class func postFromJSON(JSON : [String:AnyObject]) -> PantsPost {
-        let mapper = Mapper<PantsPost>()
+        var post = PantsPost()
 
-        mapper.map { (field, object) in
-            field["body"] => object.bodyAsMarkdown
-            field["body_html"] => object.bodyAsHtml
-            field["domain"] => object.domain
-            field["guid"] => object.identifier
-        }
+        var body : AnyObject? = JSON["body"]
+        post.bodyAsMarkdown = body as String?
 
-        var post = mapper.parse(JSON, to: PantsPost());
+        var body_html : AnyObject? = JSON["body_html"]
+        post.bodyAsHtml = body_html as String?
+
+        var domain : AnyObject? = JSON["domain"]
+        post.domain = domain as String?
+
+        var guid : AnyObject? = JSON["guid"]
+        post.identifier = guid as String?
 
         var publishedAt : AnyObject? = JSON["published_at"]
         post.publicationDate = ISO8601DateFormatter().dateFromString(publishedAt as String)
