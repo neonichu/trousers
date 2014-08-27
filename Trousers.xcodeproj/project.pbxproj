@@ -12,10 +12,6 @@
 		A129F1C619728133002B023E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A129F1C519728133002B023E /* Images.xcassets */; };
 		A129F1E119728A12002B023E /* PantsSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A129F1E019728A12002B023E /* PantsSessionManager.swift */; };
 		A129F1E419728D8B002B023E /* PantsPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A129F1E319728D8B002B023E /* PantsPost.swift */; };
-		A129F1F319729989002B023E /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = A129F1EF19729989002B023E /* Mapper.swift */; };
-		A129F1F419729989002B023E /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A129F1F019729989002B023E /* Operators.swift */; };
-		A129F1F519729989002B023E /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A129F1F119729989002B023E /* Parser.swift */; };
-		A129F1F619729989002B023E /* Validators.swift in Sources */ = {isa = PBXBuildFile; fileRef = A129F1F219729989002B023E /* Validators.swift */; };
 		A129F1F819729A51002B023E /* PantsPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A129F1F719729A51002B023E /* PantsPostsViewController.swift */; };
 		A129F1FA1972CC6D002B023E /* PantsPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A129F1F91972CC6D002B023E /* PantsPostViewController.swift */; };
 /* End PBXBuildFile section */
@@ -30,10 +26,6 @@
 		A129F1E019728A12002B023E /* PantsSessionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PantsSessionManager.swift; sourceTree = "<group>"; };
 		A129F1E219728A35002B023E /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		A129F1E319728D8B002B023E /* PantsPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PantsPost.swift; sourceTree = "<group>"; };
-		A129F1EF19729989002B023E /* Mapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Mapper.swift; path = vendor/SwiftMapper/SwiftMapper/Mapper.swift; sourceTree = "<group>"; };
-		A129F1F019729989002B023E /* Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = vendor/SwiftMapper/SwiftMapper/Operators.swift; sourceTree = "<group>"; };
-		A129F1F119729989002B023E /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Parser.swift; path = vendor/SwiftMapper/SwiftMapper/Parser.swift; sourceTree = "<group>"; };
-		A129F1F219729989002B023E /* Validators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Validators.swift; path = vendor/SwiftMapper/SwiftMapper/Validators.swift; sourceTree = "<group>"; };
 		A129F1F719729A51002B023E /* PantsPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PantsPostsViewController.swift; sourceTree = "<group>"; };
 		A129F1F91972CC6D002B023E /* PantsPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PantsPostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,7 +57,6 @@
 				933052FC548E4A47AE81CB94 /* Frameworks */,
 				A129F1BA19728133002B023E /* Products */,
 				A129F1DF1972818D002B023E /* Resources */,
-				A129F1EE19729970002B023E /* SwiftMapper */,
 				73CDE1872F8F4CA8B144E8B3 /* Pods-Trousers.xcconfig */,
 			);
 			sourceTree = "<group>";
@@ -98,17 +89,6 @@
 				A129F1BD19728133002B023E /* Info.plist */,
 			);
 			path = Resources;
-			sourceTree = "<group>";
-		};
-		A129F1EE19729970002B023E /* SwiftMapper */ = {
-			isa = PBXGroup;
-			children = (
-				A129F1EF19729989002B023E /* Mapper.swift */,
-				A129F1F019729989002B023E /* Operators.swift */,
-				A129F1F119729989002B023E /* Parser.swift */,
-				A129F1F219729989002B023E /* Validators.swift */,
-			);
-			name = SwiftMapper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -215,10 +195,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A129F1FA1972CC6D002B023E /* PantsPostViewController.swift in Sources */,
-				A129F1F319729989002B023E /* Mapper.swift in Sources */,
-				A129F1F619729989002B023E /* Validators.swift in Sources */,
-				A129F1F419729989002B023E /* Operators.swift in Sources */,
-				A129F1F519729989002B023E /* Parser.swift in Sources */,
 				A129F1E419728D8B002B023E /* PantsPost.swift in Sources */,
 				A129F1BF19728133002B023E /* AppDelegate.swift in Sources */,
 				A129F1E119728A12002B023E /* PantsSessionManager.swift in Sources */,

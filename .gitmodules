@@ -1,3 +1,0 @@
-[submodule "vendor/SwiftMapper"]
-	path = vendor/SwiftMapper
-	url = git@github.com:kam800/SwiftMapper.git
