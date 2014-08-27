@@ -12,16 +12,20 @@ class PantsPostsViewController: UITableViewController {
 
     var posts : Array<PantsPost>!
 
-    convenience init() {
+    convenience override init() {
         self.init(nibName: nil, bundle: nil)
     }
 
-    init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!)  {
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!)  {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
         self.title = "such #pants"
         self.tableView.registerClass(UITableViewCell.self,
             forCellReuseIdentifier: NSStringFromClass(self.dynamicType))
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     override func viewDidLoad() {
@@ -33,7 +37,7 @@ class PantsPostsViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        return self.posts ? self.posts.count : 0
+        return (self.posts != nil) ? self.posts.count : 0
     }
 
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {

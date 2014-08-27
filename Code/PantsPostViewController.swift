@@ -19,6 +19,10 @@ class PantsPostViewController: UIViewController {
         self.post = post
     }
 
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         var webView = WKWebView(frame: self.view.bounds)
         webView.loadHTMLString(self.post?.bodyAsHtml, baseURL: self.post?.url)

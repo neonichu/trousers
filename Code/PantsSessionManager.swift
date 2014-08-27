@@ -19,8 +19,12 @@ class PantsSessionManager : AFHTTPSessionManager {
         return Static.instance
     }
 
-    init() {
+    override init() {
         super.init(baseURL: NSURL.URLWithString("http://hmans.io/"), sessionConfiguration: nil)
+    }
+
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 
     func posts(handler : PostsHandler) -> Void {
@@ -30,7 +34,7 @@ class PantsSessionManager : AFHTTPSessionManager {
                 var posts = Array<PantsPost>()
 
                 for postDictionary in responseObject! as NSArray {
-                    posts += PantsPost.postFromJSON(postDictionary as [String:AnyObject])
+                    posts.append(PantsPost.postFromJSON(postDictionary as [String:AnyObject]))
                 }
 
                 handler(posts: posts, error: nil);
