@@ -8,23 +8,51 @@
 
 import Foundation
 
+let PantsDomainKey = "PantsDomain"
+
+func PantsDomain() -> String? {
+    return NSUserDefaults.standardUserDefaults().valueForKey(PantsDomainKey) as? String
+}
+
+func PantsDomainSet(domain : String) -> Void {
+    NSUserDefaults.standardUserDefaults().setValue(domain, forKey: PantsDomainKey)
+}
+
+typealias LoginHandler = (response: AnyObject!, error: NSError!) -> (Void)
 typealias PostsHandler = (posts : Array<PantsPost>!, error: NSError!) -> (Void)
 
 class PantsSessionManager : AFHTTPSessionManager {
 
     class var sharedManager : PantsSessionManager {
         struct Static {
-            static let instance : PantsSessionManager = PantsSessionManager()
+            static let baseURL = NSURL.URLWithString(PantsDomain()!)
+            static let instance : PantsSessionManager = PantsSessionManager(baseURL: baseURL)
         }
         return Static.instance
     }
 
-    override init() {
-        super.init(baseURL: NSURL.URLWithString("http://hmans.io/"), sessionConfiguration: nil)
+    override init(baseURL url: NSURL!) {
+        super.init(baseURL: url, sessionConfiguration: nil)
     }
 
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func login(password : String, handler: LoginHandler) -> Void {
+        self.POST("login.json",
+            parameters: nil,
+            constructingBodyWithBlock: { (data : AFMultipartFormData!) -> Void in
+                data.appendPartWithFormData(password.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true), name: "login[password]")
+            }, success: { (dataTask : NSURLSessionDataTask!,
+                responseObject : AnyObject!) -> Void in
+                var token : AnyObject? = (responseObject as [String:AnyObject])["token"]
+                self.requestSerializer = PantsRequestSerializer(token: token as String)
+
+                handler(response: responseObject, error: nil)
+            }, failure: { (dataTask: NSURLSessionDataTask!, error: NSError!) -> Void in
+                handler(response: nil, error: error)
+        })
     }
 
     func posts(handler : PostsHandler) -> Void {
