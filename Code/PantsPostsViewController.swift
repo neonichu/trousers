@@ -29,7 +29,7 @@ class PantsPostsViewController: UITableViewController {
     }
 
     override func viewDidLoad() {
-        PantsSessionManager.sharedManager.posts(
+        PantsSessionManager.sharedManager.network(
             { (posts : Array<PantsPost>!, error : NSError!) -> Void in
                 self.posts = posts
                 self.tableView.reloadData()

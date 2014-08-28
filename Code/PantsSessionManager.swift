@@ -55,8 +55,16 @@ class PantsSessionManager : AFHTTPSessionManager {
         })
     }
 
+    func network(handler : PostsHandler) -> Void {
+        self.posts("network.json", handler: handler)
+    }
+
     func posts(handler : PostsHandler) -> Void {
-        self.GET("posts.json",
+        self.posts("posts.json", handler: handler)
+    }
+
+    func posts(URLString : String, handler : PostsHandler) -> Void {
+        self.GET(URLString,
             parameters: nil,
             success: { (dataTask : NSURLSessionDataTask!, responseObject : AnyObject!) -> Void in
                 var posts = Array<PantsPost>()
