@@ -29,8 +29,20 @@ class PantsLoginViewController: UIViewController, UITextFieldDelegate {
         return textField
     }
 
+    func loginTapped(sender : UIButton!) -> Void {
+        SSKeychain.setPassword(self.passwordTextField!.text,
+            forService: PantsDomainKey, account: self.domainTextField!.text)
+
+        PantsSessionManager.sharedManager.login(self.passwordTextField!.text,
+            handler: { (response, error) -> (Void) in
+                self.navigationController.pushViewController(PantsPostsViewController(),
+                    animated: true)
+        })
+    }
+
     override func viewDidLoad() {
         self.edgesForExtendedLayout = UIRectEdge.None
+        self.title = NSLocalizedString("#pants Login", comment: "")
         self.view.backgroundColor = UIColor.whiteColor()
 
         var domainLabel = self.buildLabel()
@@ -51,18 +63,27 @@ class PantsLoginViewController: UIViewController, UITextFieldDelegate {
         self.passwordTextField!.returnKeyType = UIReturnKeyType.Go
         self.passwordTextField!.secureTextEntry = true
         self.view.addSubview(self.passwordTextField!)
+
+        var loginButton = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        loginButton.addTarget(self, action: "loginTapped:",
+            forControlEvents: UIControlEvents.TouchUpInside)
+        loginButton.backgroundColor = buttonColor()
+        loginButton.titleLabel.font = domainLabel.font
+        loginButton.frame = self.passwordTextField!.nextVerticalRect()
+        loginButton.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        loginButton.setTitleColor(UIColor.blackColor(), forState: UIControlState.Highlighted)
+        loginButton.setTitle(NSLocalizedString("Login", comment: ""),
+            forState: UIControlState.Normal)
+        loginButton.frame.size = CGSize(width: 150.0, height: 44.0)
+        loginButton.frame.origin.x = (self.view.width() - loginButton.width()) / 2
+        self.view.addSubview(loginButton)
     }
 
     func textFieldShouldReturn(textField: UITextField!) -> Bool {
         if (textField.returnKeyType == UIReturnKeyType.Next) {
             self.passwordTextField!.becomeFirstResponder()
         } else {
-            PantsDomainSet("http://" + self.domainTextField!.text)
-            PantsSessionManager.sharedManager.login(self.passwordTextField!.text,
-                handler: { (response, error) -> (Void) in
-                    self.navigationController.pushViewController(PantsPostsViewController(),
-                        animated: true)
-            })
+            self.loginTapped(nil)
         }
 
         return false

@@ -16,7 +16,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication!, didFinishLaunchingWithOptions launchOptions: NSDictionary!) -> Bool {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window!.backgroundColor = UIColor.whiteColor()
-        self.window!.rootViewController = UINavigationController(rootViewController: PantsPostsViewController())
+
+        var accounts = SSKeychain.accountsForService(PantsDomainKey)
+        if (accounts.count == 0) {
+            self.window!.rootViewController = UINavigationController(rootViewController:PantsLoginViewController())
+        } else {
+            self.window!.rootViewController = UIViewController()
+
+            var account = accounts[0]["acct"] as String
+            var password = SSKeychain.passwordForService(PantsDomainKey, account: account)
+            PantsSessionManager.sharedManager.login(password,
+                handler: { (response, error) -> (Void) in
+                    if (error != nil) {
+                        UIAlertView.showAlertWithError(error)
+
+                        
+                        return
+                    }
+
+                    self.window!.rootViewController = UINavigationController(rootViewController: PantsPostsViewController())
+            })
+        }
+
         self.window!.makeKeyAndVisible()
 
         return true

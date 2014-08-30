@@ -10,25 +10,52 @@ import Foundation
 
 let PantsDomainKey = "PantsDomain"
 
-func PantsDomain() -> String? {
-    return NSUserDefaults.standardUserDefaults().valueForKey(PantsDomainKey) as? String
-}
-
-func PantsDomainSet(domain : String) -> Void {
-    NSUserDefaults.standardUserDefaults().setValue(domain, forKey: PantsDomainKey)
-}
-
 typealias LoginHandler = (response: AnyObject!, error: NSError!) -> (Void)
 typealias PostsHandler = (posts : Array<PantsPost>!, error: NSError!) -> (Void)
 
 class PantsSessionManager : AFHTTPSessionManager {
+    var token : String?
 
     class var sharedManager : PantsSessionManager {
         struct Static {
-            static let baseURL = NSURL.URLWithString(PantsDomain()!)
+            static let domain = SSKeychain.accountsForService(PantsDomainKey)[0]["acct"] as String
+            static let baseURL = NSURL.URLWithString("http://" + domain)
             static let instance : PantsSessionManager = PantsSessionManager(baseURL: baseURL)
         }
         return Static.instance
+    }
+
+    override func GET(URLString: String!, parameters: AnyObject!,
+        success: ((NSURLSessionDataTask!, AnyObject!) -> Void)!,
+        failure: ((NSURLSessionDataTask!, NSError!) -> Void)!) -> NSURLSessionDataTask! {
+            var parametersDict = [:]
+
+            if (parameters != nil) {
+                parametersDict = parameters as [String:AnyObject]
+            }
+
+            var url = NSURL(string: URLString, relativeToURL: self.baseURL).absoluteString
+            var request = self.requestSerializer.multipartFormRequestWithMethod("GET", URLString: url, parameters: parametersDict, constructingBodyWithBlock: { (data : AFMultipartFormData!) -> Void in
+                data.appendPartWithFormData(self.token!.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false), name: "token")
+                }, error: nil)
+
+            var task : NSURLSessionDataTask!
+            task = self.dataTaskWithRequest(request, completionHandler: { (response: NSURLResponse!, responseObject : AnyObject!, error : NSError!) -> Void in
+                if (error != nil) {
+                    if (failure != nil) {
+                        failure(task, error);
+                    }
+                } else {
+                    if (success != nil) {
+                        success(task, responseObject);
+                    }
+                }
+
+            })
+            
+            task.resume()
+            
+            return task
     }
 
     override init(baseURL url: NSURL!) {
@@ -47,7 +74,7 @@ class PantsSessionManager : AFHTTPSessionManager {
             }, success: { (dataTask : NSURLSessionDataTask!,
                 responseObject : AnyObject!) -> Void in
                 var token : AnyObject? = (responseObject as [String:AnyObject])["token"]
-                self.requestSerializer = PantsRequestSerializer(token: token as String)
+                self.token = token as? String
 
                 handler(response: responseObject, error: nil)
             }, failure: { (dataTask: NSURLSessionDataTask!, error: NSError!) -> Void in

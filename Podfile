@@ -7,6 +7,7 @@ target "Trousers" do
 pod 'AFNetworking'
 pod 'Bypass'
 pod 'ISO8601DateFormatter'
+pod 'SSKeychain'
 
 end
 

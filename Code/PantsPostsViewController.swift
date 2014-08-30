@@ -45,7 +45,7 @@ class PantsPostsViewController: UITableViewController {
             forIndexPath: indexPath) as UITableViewCell
         var post = self.posts[indexPath.row]
 
-        cell.textLabel.text = post.body().string
+        cell.textLabel.text = post.title
 
         return cell
     }

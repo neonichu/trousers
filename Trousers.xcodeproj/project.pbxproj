@@ -14,7 +14,8 @@
 		A129F1E419728D8B002B023E /* PantsPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A129F1E319728D8B002B023E /* PantsPost.swift */; };
 		A129F1F819729A51002B023E /* PantsPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A129F1F719729A51002B023E /* PantsPostsViewController.swift */; };
 		A129F1FA1972CC6D002B023E /* PantsPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A129F1F91972CC6D002B023E /* PantsPostViewController.swift */; };
-		A1B91A1719AEFDFA005F99F3 /* PantsRequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B91A1619AEFDFA005F99F3 /* PantsRequestSerializer.swift */; };
+		A1D773C719B12D4800FFA8DB /* TrousersTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D773C619B12D4800FFA8DB /* TrousersTheme.swift */; };
+		A1D773C919B135F200FFA8DB /* UIAlertViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D773C819B135F200FFA8DB /* UIAlertViewExtension.swift */; };
 		A1E3BD4A19AE8AFD004435CB /* PantsLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E3BD4919AE8AFD004435CB /* PantsLoginViewController.swift */; };
 		A1E3BD4C19AE8E3E004435CB /* UIViewGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E3BD4B19AE8E3E004435CB /* UIViewGeometry.swift */; };
 /* End PBXBuildFile section */
@@ -31,7 +32,8 @@
 		A129F1E319728D8B002B023E /* PantsPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PantsPost.swift; sourceTree = "<group>"; };
 		A129F1F719729A51002B023E /* PantsPostsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PantsPostsViewController.swift; sourceTree = "<group>"; };
 		A129F1F91972CC6D002B023E /* PantsPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PantsPostViewController.swift; sourceTree = "<group>"; };
-		A1B91A1619AEFDFA005F99F3 /* PantsRequestSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PantsRequestSerializer.swift; sourceTree = "<group>"; };
+		A1D773C619B12D4800FFA8DB /* TrousersTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrousersTheme.swift; sourceTree = "<group>"; };
+		A1D773C819B135F200FFA8DB /* UIAlertViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertViewExtension.swift; sourceTree = "<group>"; };
 		A1E3BD4919AE8AFD004435CB /* PantsLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PantsLoginViewController.swift; sourceTree = "<group>"; };
 		A1E3BD4B19AE8E3E004435CB /* UIViewGeometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewGeometry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -82,6 +84,8 @@
 				A1B91A1919AEFE23005F99F3 /* ViewControllers */,
 				A129F1BE19728133002B023E /* AppDelegate.swift */,
 				A129F1E219728A35002B023E /* BridgingHeader.h */,
+				A1D773C619B12D4800FFA8DB /* TrousersTheme.swift */,
+				A1D773C819B135F200FFA8DB /* UIAlertViewExtension.swift */,
 				A1E3BD4B19AE8E3E004435CB /* UIViewGeometry.swift */,
 			);
 			path = Code;
@@ -101,7 +105,6 @@
 			children = (
 				A129F1E319728D8B002B023E /* PantsPost.swift */,
 				A129F1E019728A12002B023E /* PantsSessionManager.swift */,
-				A1B91A1619AEFDFA005F99F3 /* PantsRequestSerializer.swift */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -219,12 +222,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A1B91A1719AEFDFA005F99F3 /* PantsRequestSerializer.swift in Sources */,
 				A129F1FA1972CC6D002B023E /* PantsPostViewController.swift in Sources */,
 				A1E3BD4C19AE8E3E004435CB /* UIViewGeometry.swift in Sources */,
+				A1D773C919B135F200FFA8DB /* UIAlertViewExtension.swift in Sources */,
 				A129F1E419728D8B002B023E /* PantsPost.swift in Sources */,
 				A129F1BF19728133002B023E /* AppDelegate.swift in Sources */,
 				A129F1E119728A12002B023E /* PantsSessionManager.swift in Sources */,
+				A1D773C719B12D4800FFA8DB /* TrousersTheme.swift in Sources */,
 				A129F1F819729A51002B023E /* PantsPostsViewController.swift in Sources */,
 				A1E3BD4A19AE8AFD004435CB /* PantsLoginViewController.swift in Sources */,
 			);

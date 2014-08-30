@@ -16,6 +16,7 @@ class PantsPost {
     var identifier : String?
     var publicationDate : NSDate?
     var tags : Array<String>?
+    var title : String?
     var url : NSURL?
 
     class func postFromJSON(JSON : [String:AnyObject]) -> PantsPost {
@@ -38,6 +39,9 @@ class PantsPost {
 
         var tags : AnyObject? = JSON["tags"]
         post.tags = tags as Array<String>?
+
+        var title : AnyObject? = JSON["title"];
+        post.title = title as String?
 
         var urlString : AnyObject? = JSON["url"]
         post.url = NSURL(string: urlString as String)

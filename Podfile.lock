@@ -22,15 +22,18 @@ PODS:
     - AFNetworking/NSURLSession
   - Bypass (1.0.1)
   - ISO8601DateFormatter (0.7)
+  - SSKeychain (1.2.2)
 
 DEPENDENCIES:
   - AFNetworking
   - Bypass
   - ISO8601DateFormatter
+  - SSKeychain
 
 SPEC CHECKSUMS:
   AFNetworking: 6d7b76aa5d04c8c37daad3eef4b7e3f2a7620da3
   Bypass: 225bc63ebb09e5674c1fc460b1708e775f68f52f
   ISO8601DateFormatter: 59731cd880cf87e71b4fa95f0d6b713dcbc4cbce
+  SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
 
 COCOAPODS: 0.33.1
